@@ -1,0 +1,11 @@
+name: ${name}
+description: ${description}
+author: ${author}
+main: ${mainClass}
+version: ${version}
+url: ${url}
+softdepend: ["PlaceholderAPI"]
+api-version: 1.13
+commands:
+  hello:
+    description: "Main test command"

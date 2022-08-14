@@ -1,0 +1,15 @@
+# Common messages
+common:
+  no-permission: "&cNo permissions for run this command."
+  no-by-console: "&cThis command cannot be executed in the console."
+  no-by-player: "&cThis command cannot be executed by a player."
+  no-permission: "&cYou dont have permissions to run this."
+  offline-player: "&cThis player is offline."
+  material-not-found: "&cMaterial {material} not found."
+  sound-not-found: "&cSound {sound} not found."
+  world-not-found: "&cWorld {world} not found."
+  arg-must-be-boolean: "&cThe argument {arg} must be true or false."
+  arg-must-be-number: "&c{arg} is not valid number."
+  exception: "&cAn unknown error has ocurred, contact an administrator."
+
+# Commands messages

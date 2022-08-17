@@ -19,7 +19,7 @@ common:
 balance:
   success: "&aYour balance is {balance}."
 pay:
-  usage: "&cCommand usage: &7pay <player> <amount>"
+  usage: "&cCommand usage: &7/pay <player> <amount>"
   not-enough: "&cYou do not have sufficient funds."
   target-reached-limit: "&cThis target has reached their max balance limit."
   success: "&aYou have sent {amount}$ to {player}."

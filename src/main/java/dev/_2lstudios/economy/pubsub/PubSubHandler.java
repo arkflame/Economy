@@ -22,7 +22,7 @@ public class PubSubHandler {
         }
 
         // Notify to the player.
-        EconomyPlayer player = this.plugin.getPlayerManager().getPlayer(packet.getName());
+        EconomyPlayer player = this.plugin.getPlayerManager().getPlayer(packet.getPlayerName());
         if (player != null) {
             boolean isTake = packet.getNewBalance() < packet.getOldBalance();
             double diff = Math.abs(packet.getNewBalance() - packet.getOldBalance());

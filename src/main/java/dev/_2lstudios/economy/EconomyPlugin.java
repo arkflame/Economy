@@ -111,6 +111,11 @@ public class EconomyPlugin extends JavaPlugin {
         return this.api;
     }
 
+    // PubSub getter
+    public PubSub getPubSub() {
+        return this.pubsub;
+    }
+
     // Managers getters
     public LanguageManager getLanguageManager() {
         return this.languageManager;

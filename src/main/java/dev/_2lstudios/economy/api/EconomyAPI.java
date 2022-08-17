@@ -12,6 +12,7 @@ import dev._2lstudios.economy.errors.MaxBalanceLimitReachedException;
 import dev._2lstudios.economy.errors.MinBalanceLimitReachedException;
 import dev._2lstudios.economy.players.EconomyPlayer;
 import dev._2lstudios.economy.players.EconomyPlayerManager;
+import dev._2lstudios.economy.pubsub.packets.BalanceSyncPacket;
 
 public class EconomyAPI {
     /* Static Instance */
@@ -82,7 +83,8 @@ public class EconomyAPI {
 
     // Sync operations
     public void syncBalance(String username, String accountId, double oldBalance, double newBalance) {
-
+        BalanceSyncPacket packet = new BalanceSyncPacket(username, accountId, oldBalance, newBalance);
+        this.plugin.getPubSub().send(packet);
     }
 
     // Economy operations

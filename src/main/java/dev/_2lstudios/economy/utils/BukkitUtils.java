@@ -5,8 +5,11 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 
 public class BukkitUtils {
+    private static final Sound[] SOUNDS = Sound.values();
+    private static final Material[] MATERIALS = Material.values();
+    
     public static Sound getSound(String name) {
-        for (final Sound sound : Sound.values()) {
+        for (final Sound sound : SOUNDS) {
             if (name.equalsIgnoreCase(sound.name())) {
                 return sound;
             }
@@ -17,7 +20,7 @@ public class BukkitUtils {
     }
 
     public static Material getMaterial(String name) {
-        for (final Material mat : Material.values()) {
+        for (final Material mat : MATERIALS) {
             if (name.equals(mat.name())) {
                 return mat;
             }

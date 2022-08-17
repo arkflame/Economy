@@ -15,7 +15,16 @@ common:
   arg-must-be-number: "&c{arg} is not valid number."
   exception: "&cAn unknown error has ocurred, contact an administrator."
 
-# Commands messages
+# Player command messages
+balance:
+  success: "&aYour balance is {balance}."
+pay:
+  usage: "&cCommand usage: &7pay <player> <amount>"
+  not-enough: "&cYou do not have sufficient funds."
+  target-reached-limit: "&cThis target has reached their max balance limit."
+  success: "&aYou have sent {amount}$ to {player}."
+
+# Admin command messages
 economy:
   balance:
     usage: "&cCommand usage: &7/eco balance <player>"

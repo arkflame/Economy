@@ -8,6 +8,11 @@ depend: ["Milkshake-Bukkit", "Vault"]
 softdepend: ["PlaceholderAPI"]
 api-version: 1.13
 commands:
+  balance:
+    aliases: ["money", "bal"]
+    description: "Get your current balance."
   economy:
     aliases: ["eco"]
-    description: "Main economy admin command"
+    description: "Main economy admin command."
+  pay:
+    description: "Send money to another player."

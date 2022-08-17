@@ -14,6 +14,8 @@ import dev._2lstudios.economy.api.EconomyAPI;
 import dev._2lstudios.economy.api.events.EconomyEvent;
 import dev._2lstudios.economy.commands.CommandListener;
 import dev._2lstudios.economy.commands.admin.EconomyCommand;
+import dev._2lstudios.economy.commands.player.BalanceCommand;
+import dev._2lstudios.economy.commands.player.PayCommand;
 import dev._2lstudios.economy.config.ConfigManager;
 import dev._2lstudios.economy.config.Configuration;
 import dev._2lstudios.economy.i18n.LanguageManager;
@@ -81,6 +83,8 @@ public class EconomyPlugin extends JavaPlugin {
 
         // Register commands.
         this.addCommand(new EconomyCommand());
+        this.addCommand(new BalanceCommand());
+        this.addCommand(new PayCommand());
 
         // Register hooks.
         // Hook into Vault

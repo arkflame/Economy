@@ -1,112 +1,78 @@
 package dev._2lstudios.economy.players;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import dev._2lstudios.economy.Economy;
-import dev._2lstudios.economy.commands.CommandExecutor;
-import dev._2lstudios.economy.utils.PacketUtils;
-import dev._2lstudios.economy.utils.PlayerUtils;
-import dev._2lstudios.economy.utils.ServerUtils;
-import lib__net.md_5.bungee.api.chat.BaseComponent;
-import lib__net.md_5.bungee.api.chat.ComponentBuilder;
-import lib__net.md_5.bungee.chat.ComponentSerializer;
+import dev._2lstudios.economy.EconomyPlugin;
+import dev._2lstudios.economy.account.PlayerData;
+import dev._2lstudios.economy.account.PlayerDataManager;
+import dev._2lstudios.economy.errors.AccountNotFoundException;
+import dev._2lstudios.economy.errors.MaxBalanceLimitReachedException;
+import dev._2lstudios.economy.errors.MinBalanceLimitReachedException;
 
-import me.clip.placeholderapi.PlaceholderAPI;
+public class EconomyPlayer extends EconomyPlayerBase {
+    private PlayerData data = null;
+    private boolean downloaded = false;
 
-public class EconomyPlayer extends CommandExecutor {
-    private Player bukkitPlayer;
-
-    public EconomyPlayer(Economy plugin, Player bukkitPlayer) {
+    public EconomyPlayer(EconomyPlugin plugin, Player bukkitPlayer) {
         super(plugin, bukkitPlayer);
-        this.bukkitPlayer = bukkitPlayer;
     }
 
-    public Player getBukkitPlayer() {
-        return this.bukkitPlayer;
+    public PlayerData getData() {
+        return this.data;
     }
-
-    @Override
-    public String formatMessage(String message) {
-        String output = super.formatMessage(message);
-        
-        if (this.getPlugin().hasPlugin("PlaceholderAPI")) {
-            output = PlaceholderAPI.setPlaceholders(this.getBukkitPlayer(), output);
-        }
-
-        return output;
-    }
-
-    @Override
-    public String getLang() {
-        String lang = null;
-
-        if (ServerUtils.hasPlayerGetLocaleAPI()) {
-            lang = this.getBukkitPlayer().getLocale();
-        } else {
-            lang = PlayerUtils.getPlayerLocaleInLegacyWay(this.bukkitPlayer);
-        }
-
-        return lang == null ? super.getLang() : lang;
-    }
-
-    public String getName() {
-        return this.bukkitPlayer.getName();
-    }
-
-    public String getLowerName() {
-        return this.getName().toLowerCase();
-    }
-
-    public boolean isOnline() {
-        return this.bukkitPlayer != null && this.bukkitPlayer.isOnline();
+    
+    public void setData(PlayerData data) {
+        this.data = data;
     }
 
     public void download() {
-        // Descargar datos del jugador de la DB.
-        // Este metodo es llamado cuando el jugador se une al servidor.
+        Player player = this.getBukkitPlayer();
+        PlayerDataManager dataManager = this.getPlugin().getPlayerDataManager();
+        this.data = dataManager.getByPlayer(player);
+        this.downloaded = true;
+
+        if (this.data == null) {
+            this.createAccount();
+        }
     }
 
-    public void sendRawMessage(String component, byte type) {
-        if (ServerUtils.hasChatComponentAPI()) {
-            this.bukkitPlayer.spigot().sendMessage(net.md_5.bungee.chat.ComponentSerializer.parse(component));
+    public boolean isDownloaded() {
+        return this.downloaded;
+    }
+
+    public boolean createAccount() {
+        if (this.data == null) {
+            PlayerData data = this.getPlugin().getPlayerDataManager().createAccount(
+                this.getBukkitPlayer()
+            );
+            this.data = data;
+            return true;
         } else {
-            PacketUtils.sendJSON(this.getBukkitPlayer(), component, type);
+            return false;
         }
     }
 
-    public void sendRawMessage(String component) {
-        this.sendRawMessage(component, (byte) 0);
+    public double getBalance() {
+        if (this.data != null) {
+            return this.data.balance;
+        } else {
+            return 0;
+        }
     }
 
-    public void sendActionBar(String text) {
-        this.sendRawMessage(ComponentSerializer.toString(new ComponentBuilder(text).create()), (byte) 2);
-    }
-
-    public void sendMessage(BaseComponent component) {
-        this.sendRawMessage(ComponentSerializer.toString(component));
-    }
-
-    public void sendMessage(BaseComponent[] components) {
-        this.sendRawMessage(ComponentSerializer.toString(components));
-    }
-
-    public void sendToServer(String server) {
+    public double give(double amount) throws MaxBalanceLimitReachedException {
         try {
-            ByteArrayOutputStream b = new ByteArrayOutputStream();
-            DataOutputStream out = new DataOutputStream(b);
-            out.writeUTF("Connect");
-            out.writeUTF(server);
-            this.getBukkitPlayer().sendPluginMessage(this.getPlugin(), "BungeeCord", b.toByteArray());
-            b.close();
-            out.close();
-        } catch (Exception e) {
-            this.getBukkitPlayer().sendMessage(ChatColor.RED + "Error when trying to connect to " + server);
+            return this.getPlugin().getAPI().give(this, amount);
+        } catch (AccountNotFoundException e) {
+            return 0;
         }
     }
 
-
+    public double take(double amount) throws MinBalanceLimitReachedException {
+        try {
+            return this.getPlugin().getAPI().take(this, amount);
+        } catch (AccountNotFoundException e) {
+            return 0;
+        }
+    }
 }

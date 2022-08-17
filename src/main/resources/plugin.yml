@@ -4,8 +4,10 @@ author: ${author}
 main: ${mainClass}
 version: ${version}
 url: ${url}
+depend: ["Milkshake-Bukkit", "Vault"]
 softdepend: ["PlaceholderAPI"]
 api-version: 1.13
 commands:
-  hello:
-    description: "Main test command"
+  economy:
+    aliases: ["eco"]
+    description: "Main economy admin command"

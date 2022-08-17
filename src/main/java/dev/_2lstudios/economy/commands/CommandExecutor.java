@@ -3,17 +3,17 @@ package dev._2lstudios.economy.commands;
 
 import com.iridium.iridiumcolorapi.IridiumColorAPI;
 
-import dev._2lstudios.economy.Economy;
+import dev._2lstudios.economy.EconomyPlugin;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandExecutor {
-    private Economy plugin;
+    private EconomyPlugin plugin;
     private CommandSender sender;
     
-    public CommandExecutor(Economy plugin, CommandSender sender) {
+    public CommandExecutor(EconomyPlugin plugin, CommandSender sender) {
         this.plugin = plugin;
         this.sender = sender;
     }
@@ -62,7 +62,7 @@ public class CommandExecutor {
         }
     }
 
-    public Economy getPlugin() {
+    public EconomyPlugin getPlugin() {
         return this.plugin;
     }
 }

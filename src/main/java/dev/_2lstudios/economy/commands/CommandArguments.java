@@ -9,7 +9,7 @@ import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
-import dev._2lstudios.economy.Economy;
+import dev._2lstudios.economy.EconomyPlugin;
 import dev._2lstudios.economy.errors.BadArgumentException;
 import dev._2lstudios.economy.errors.MaterialNotFoundException;
 import dev._2lstudios.economy.errors.PlayerOfflineException;
@@ -20,13 +20,13 @@ import dev._2lstudios.economy.players.OfflinePlayer;
 import dev._2lstudios.economy.utils.BukkitUtils;
 
 public class CommandArguments {
-    private Economy plugin;
+    private EconomyPlugin plugin;
     private Argument[] requiredArguments;
     private boolean isParsingLargeString = false;
     
     private List<Object> arguments = new ArrayList<>();
 
-    public CommandArguments(Economy plugin, Argument[] requiredArguments) {
+    public CommandArguments(EconomyPlugin plugin, Argument[] requiredArguments) {
         this.plugin = plugin;
         this.requiredArguments = requiredArguments;
     }

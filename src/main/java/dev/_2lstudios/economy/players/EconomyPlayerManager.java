@@ -3,17 +3,18 @@ package dev._2lstudios.economy.players;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
-import dev._2lstudios.economy.Economy;
+import dev._2lstudios.economy.EconomyPlugin;
 
 public class EconomyPlayerManager {
-    private Economy plugin;
+    private EconomyPlugin plugin;
 
     private Map<Player, EconomyPlayer> players;
 
-    public EconomyPlayerManager(Economy plugin) {
+    public EconomyPlayerManager(EconomyPlugin plugin) {
         this.plugin = plugin;
         this.players = new HashMap<>();
     }
@@ -34,6 +35,15 @@ public class EconomyPlayerManager {
 
     public EconomyPlayer getPlayer(String name) {
         Player bukkitPlayer = this.plugin.getServer().getPlayerExact(name);
+        if (bukkitPlayer != null && bukkitPlayer.isOnline()) {
+            return this.getPlayer(bukkitPlayer);
+        } else {
+            return null;
+        }
+    }
+
+    public EconomyPlayer getPlayer(UUID uuid) {
+        Player bukkitPlayer = this.plugin.getServer().getPlayer(uuid);
         if (bukkitPlayer != null && bukkitPlayer.isOnline()) {
             return this.getPlayer(bukkitPlayer);
         } else {

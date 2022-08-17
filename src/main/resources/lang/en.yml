@@ -5,6 +5,9 @@ common:
   no-by-player: "&cThis command cannot be executed by a player."
   no-permission: "&cYou dont have permissions to run this."
   offline-player: "&cThis player is offline."
+  player-doesnt-exist: "&cThis player doesn't exist."
+  max-limit-reached: "&cMax limit reached to this account."
+  min-limit-reached: "&cThis account doesn't have sufficcent balance."
   material-not-found: "&cMaterial {material} not found."
   sound-not-found: "&cSound {sound} not found."
   world-not-found: "&cWorld {world} not found."
@@ -13,3 +16,21 @@ common:
   exception: "&cAn unknown error has ocurred, contact an administrator."
 
 # Commands messages
+economy:
+  balance:
+    usage: "&cCommand usage: &7/eco balance <player>"
+    success: "&a{player} balance is: &7{balance}"
+  give:
+    usage: "&cCommand usage: &7/eco give <player> <amount>"
+    success: "&aGaved {amount}$ to {player}, new balance is {balance}."
+  take:
+    usage: "&cCommand usage: &7/eco take <player> <amount>"
+    success: "&aTaked {amount}$ from {player}, new balance is {balance}."
+  help: |-
+    &r 
+    &6&lEconomy &8| &cAdmin Commands
+    &r 
+    &e/eco balance <player> &8- &7Get player balance.
+    &e/eco give <player> <amount> &8- &7Give money to a player.
+    &e/eco take <player> <amount> &8- &7Take money from a player.
+    &r 

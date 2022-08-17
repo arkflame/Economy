@@ -4,13 +4,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import dev._2lstudios.economy.Economy;
+import dev._2lstudios.economy.EconomyPlugin;
 import dev._2lstudios.economy.players.EconomyPlayer;
 
 public class PlayerJoinListener implements Listener {
-  private Economy plugin;
+  private EconomyPlugin plugin;
 
-  public PlayerJoinListener(Economy plugin) {
+  public PlayerJoinListener(EconomyPlugin plugin) {
     this.plugin = plugin;
   }
   

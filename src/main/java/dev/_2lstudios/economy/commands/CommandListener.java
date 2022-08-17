@@ -6,7 +6,7 @@ import java.util.List;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import dev._2lstudios.economy.Economy;
+import dev._2lstudios.economy.EconomyPlugin;
 import dev._2lstudios.economy.errors.BadArgumentException;
 import dev._2lstudios.economy.errors.MaterialNotFoundException;
 import dev._2lstudios.economy.errors.PlayerOfflineException;
@@ -16,7 +16,7 @@ import dev._2lstudios.economy.utils.ArrayUtils;
 
 public abstract class CommandListener implements CommandExecutor {
     protected Command command;
-    protected Economy plugin;
+    protected EconomyPlugin plugin;
 
     private List<CommandListener> subCommands = new ArrayList<>();
 
@@ -104,7 +104,7 @@ public abstract class CommandListener implements CommandExecutor {
         return null;
     }
 
-    public void register(Economy plugin, boolean isSubCommand) {
+    public void register(EconomyPlugin plugin, boolean isSubCommand) {
         this.plugin = plugin;
         this.command = this.getClass().getAnnotation(Command.class);
 

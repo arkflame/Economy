@@ -1,2 +1,31 @@
 settings:
   default-lang: "en"
+  
+economy:
+  balance:
+    initial: 0
+    min: 0
+    max: 10000000
+  currency:
+    fractionals: 2
+    plural: "coins"
+    singular: "coin"
+    symbol: "$"
+
+pubsub:
+  # Available drivers:
+  # none - doesn't support multiple servers.
+  # bungee - support multiple servers with an unique proxy.
+  # redis - support multiple servers and proxies.
+  driver: "none"
+  redis:
+    uri: "redis://localhost/0"
+    password: ""
+
+storage:
+  # Available drivers:
+  # mongodb - support multiple servers and proxies.
+  driver: "mongodb"
+  mongodb:
+    uri: "mongodb://localhost/minecraft"
+    collection: "PlayerEconomy"

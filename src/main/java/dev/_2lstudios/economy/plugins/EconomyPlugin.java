@@ -1,4 +1,4 @@
-package dev._2lstudios.economy;
+package dev._2lstudios.economy.plugins;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;

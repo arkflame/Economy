@@ -2,8 +2,8 @@ package dev._2lstudios.economy.players;
 
 import org.bukkit.entity.Player;
 
-import dev._2lstudios.economy.EconomyPlugin;
 import dev._2lstudios.economy.account.PlayerDataManager;
+import dev._2lstudios.economy.plugins.EconomyPlugin;
 
 public class OfflinePlayer extends EconomyPlayer {
     private String username;

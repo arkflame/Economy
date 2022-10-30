@@ -4,7 +4,6 @@ import java.util.UUID;
 
 import org.bukkit.OfflinePlayer;
 
-import dev._2lstudios.economy.EconomyPlugin;
 import dev._2lstudios.economy.account.PlayerData;
 import dev._2lstudios.economy.account.PlayerDataManager;
 import dev._2lstudios.economy.errors.AccountNotFoundException;
@@ -12,6 +11,7 @@ import dev._2lstudios.economy.errors.MaxBalanceLimitReachedException;
 import dev._2lstudios.economy.errors.MinBalanceLimitReachedException;
 import dev._2lstudios.economy.players.EconomyPlayer;
 import dev._2lstudios.economy.players.EconomyPlayerManager;
+import dev._2lstudios.economy.plugins.EconomyPlugin;
 import dev._2lstudios.economy.pubsub.packets.BalanceSyncPacket;
 
 public class EconomyAPI {

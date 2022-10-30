@@ -2,12 +2,12 @@ package dev._2lstudios.economy.players;
 
 import org.bukkit.entity.Player;
 
-import dev._2lstudios.economy.EconomyPlugin;
 import dev._2lstudios.economy.account.PlayerData;
 import dev._2lstudios.economy.account.PlayerDataManager;
 import dev._2lstudios.economy.errors.AccountNotFoundException;
 import dev._2lstudios.economy.errors.MaxBalanceLimitReachedException;
 import dev._2lstudios.economy.errors.MinBalanceLimitReachedException;
+import dev._2lstudios.economy.plugins.EconomyPlugin;
 
 public class EconomyPlayer extends EconomyPlayerBase {
     private PlayerData data = null;

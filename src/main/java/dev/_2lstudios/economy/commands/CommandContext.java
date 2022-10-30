@@ -4,13 +4,13 @@ package dev._2lstudios.economy.commands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import dev._2lstudios.economy.EconomyPlugin;
 import dev._2lstudios.economy.errors.BadArgumentException;
 import dev._2lstudios.economy.errors.MaterialNotFoundException;
 import dev._2lstudios.economy.errors.PlayerOfflineException;
 import dev._2lstudios.economy.errors.SoundNotFoundException;
 import dev._2lstudios.economy.errors.WorldNotFoundException;
 import dev._2lstudios.economy.players.EconomyPlayer;
+import dev._2lstudios.economy.plugins.EconomyPlugin;
 
 public class CommandContext {
     private EconomyPlugin plugin;

@@ -7,7 +7,7 @@ import java.util.UUID;
 
 import org.bukkit.entity.Player;
 
-import dev._2lstudios.economy.EconomyPlugin;
+import dev._2lstudios.economy.plugins.EconomyPlugin;
 
 public class EconomyPlayerManager {
     private EconomyPlugin plugin;

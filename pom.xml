@@ -14,7 +14,7 @@
 
     <properties>
         <author>2LStudios</author>
-        <mainClass>dev._2lstudios.economy.EconomyPlugin</mainClass>
+        <mainClass>dev._2lstudios.economy.plugins.EconomyPlugin</mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

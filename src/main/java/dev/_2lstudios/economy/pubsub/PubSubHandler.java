@@ -1,8 +1,8 @@
 package dev._2lstudios.economy.pubsub;
 
-import dev._2lstudios.economy.EconomyPlugin;
 import dev._2lstudios.economy.account.PlayerData;
 import dev._2lstudios.economy.players.EconomyPlayer;
+import dev._2lstudios.economy.plugins.EconomyPlugin;
 import dev._2lstudios.economy.pubsub.packets.BalanceSyncPacket;
 
 public class PubSubHandler {

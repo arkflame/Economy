@@ -9,8 +9,8 @@ import java.util.Map;
 
 import org.bukkit.configuration.InvalidConfigurationException;
 
-import dev._2lstudios.economy.EconomyPlugin;
 import dev._2lstudios.economy.config.Configuration;
+import dev._2lstudios.economy.plugins.EconomyPlugin;
 import dev._2lstudios.economy.utils.FileUtils;
 
 public class LanguageManager {

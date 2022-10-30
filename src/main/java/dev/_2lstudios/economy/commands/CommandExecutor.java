@@ -3,7 +3,7 @@ package dev._2lstudios.economy.commands;
 
 import com.iridium.iridiumcolorapi.IridiumColorAPI;
 
-import dev._2lstudios.economy.EconomyPlugin;
+import dev._2lstudios.economy.plugins.EconomyPlugin;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

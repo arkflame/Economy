@@ -4,13 +4,12 @@ import java.util.List;
 
 import org.bukkit.OfflinePlayer;
 
-import dev._2lstudios.economy.EconomyPlugin;
 import dev._2lstudios.economy.api.EconomyAPI;
 import dev._2lstudios.economy.config.Configuration;
 import dev._2lstudios.economy.errors.AccountNotFoundException;
 import dev._2lstudios.economy.errors.MaxBalanceLimitReachedException;
 import dev._2lstudios.economy.errors.MinBalanceLimitReachedException;
-
+import dev._2lstudios.economy.plugins.EconomyPlugin;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.economy.EconomyResponse.ResponseType;

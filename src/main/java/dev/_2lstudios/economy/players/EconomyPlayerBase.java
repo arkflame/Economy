@@ -6,8 +6,8 @@ import java.io.DataOutputStream;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import dev._2lstudios.economy.EconomyPlugin;
 import dev._2lstudios.economy.commands.CommandExecutor;
+import dev._2lstudios.economy.plugins.EconomyPlugin;
 import dev._2lstudios.economy.utils.PacketUtils;
 import dev._2lstudios.economy.utils.PlayerUtils;
 import dev._2lstudios.economy.utils.ServerUtils;

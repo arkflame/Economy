@@ -6,12 +6,12 @@ import java.util.List;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import dev._2lstudios.economy.EconomyPlugin;
 import dev._2lstudios.economy.errors.BadArgumentException;
 import dev._2lstudios.economy.errors.MaterialNotFoundException;
 import dev._2lstudios.economy.errors.PlayerOfflineException;
 import dev._2lstudios.economy.errors.SoundNotFoundException;
 import dev._2lstudios.economy.errors.WorldNotFoundException;
+import dev._2lstudios.economy.plugins.EconomyPlugin;
 import dev._2lstudios.economy.utils.ArrayUtils;
 
 public abstract class CommandListener implements CommandExecutor {

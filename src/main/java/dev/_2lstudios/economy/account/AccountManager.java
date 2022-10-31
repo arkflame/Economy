@@ -23,7 +23,7 @@ public class AccountManager {
         this.cache = new HashMap<>();
         this.repository = Milkshake.addRepository(AccountEntity.class, provider, collectionName);
     }
-    
+
     public AccountEntity storeInCache(AccountEntity account) {
         if (account != null) {
             this.cache.put(account.getID(), account);
@@ -32,15 +32,13 @@ public class AccountManager {
     }
 
     public AccountEntity createAccount(String username, String uuid, double initialBalance) {
-        AccountEntity acc = new AccountEntity();
-        acc.username = username;
-        acc.uuid = uuid;
-        acc.balance = initialBalance;
+        AccountEntity acc = new AccountEntity(username, uuid, initialBalance);
+
         acc.save();
 
         Player player = Bukkit.getPlayer(username);
         boolean isOnline = player != null && player.isOnline();
-        
+
         return isOnline ? this.storeInCache(acc) : acc;
     }
 
@@ -81,7 +79,7 @@ public class AccountManager {
     public AccountEntity getByUUID(UUID uuid) {
         return this.getByUUID(uuid.toString());
     }
-    
+
     public AccountEntity getByPlayer(OfflinePlayer player) {
         String uuid = player.getUniqueId().toString();
         String username = player.getName().toLowerCase();

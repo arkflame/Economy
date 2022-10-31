@@ -32,16 +32,7 @@ public class Transaction {
     }
 
     public TransactionEntity toTransactionEntity() {
-        TransactionEntity transactionEntity = new TransactionEntity();
-
-        transactionEntity.time = time;
-        transactionEntity.amount = amount;
-        transactionEntity.fromId = from.getId();
-        transactionEntity.fromName = from.getName();
-        transactionEntity.fromUUID = from.getUuid();
-        transactionEntity.toId = to.getId();
-        transactionEntity.toName = to.getName();
-        transactionEntity.toUUID = to.getUuid();
+        TransactionEntity transactionEntity = new TransactionEntity(from, to, amount, time);
 
         return transactionEntity;
     }

@@ -13,24 +13,26 @@ import com.dotphin.milkshake.Provider;
 import com.dotphin.milkshake.Repository;
 import com.dotphin.milkshake.find.FindFilter;
 
+import dev._2lstudios.economy.entities.PlayerDataEntity;
+
 public class PlayerDataManager {
-    private Map<String, PlayerData> cache;
-    private Repository<PlayerData> repository;
+    private Map<String, PlayerDataEntity> cache;
+    private Repository<PlayerDataEntity> repository;
 
     public PlayerDataManager(Provider provider, String collectionName) {
         this.cache = new HashMap<>();
-        this.repository = Milkshake.addRepository(PlayerData.class, provider, collectionName);
+        this.repository = Milkshake.addRepository(PlayerDataEntity.class, provider, collectionName);
     }
     
-    public PlayerData storeInCache(PlayerData account) {
+    public PlayerDataEntity storeInCache(PlayerDataEntity account) {
         if (account != null) {
             this.cache.put(account.getID(), account);
         }
         return account;
     }
 
-    public PlayerData createAccount(String username, String uuid, double initialBalance) {
-        PlayerData acc = new PlayerData();
+    public PlayerDataEntity createAccount(String username, String uuid, double initialBalance) {
+        PlayerDataEntity acc = new PlayerDataEntity();
         acc.username = username;
         acc.uuid = uuid;
         acc.balance = initialBalance;
@@ -42,50 +44,50 @@ public class PlayerDataManager {
         return isOnline ? this.storeInCache(acc) : acc;
     }
 
-    public PlayerData createAccount(String username, String uuid) {
+    public PlayerDataEntity createAccount(String username, String uuid) {
         return this.createAccount(username, uuid, 0);
     }
 
-    public PlayerData createAccount(OfflinePlayer player, double initialBalance) {
+    public PlayerDataEntity createAccount(OfflinePlayer player, double initialBalance) {
         return this.createAccount(player.getName().toLowerCase(), player.getUniqueId().toString(), initialBalance);
     }
 
-    public PlayerData createAccount(OfflinePlayer player) {
+    public PlayerDataEntity createAccount(OfflinePlayer player) {
         return this.createAccount(player.getName().toLowerCase(), player.getUniqueId().toString());
     }
 
-    public PlayerData getCachedAccount(String id) {
+    public PlayerDataEntity getCachedAccount(String id) {
         return this.cache.get(id);
     }
 
-    public PlayerData removeCachedAccount(String id) {
+    public PlayerDataEntity removeCachedAccount(String id) {
         return this.cache.remove(id);
     }
 
-    public PlayerData removeCachedAccount(PlayerData acc) {
+    public PlayerDataEntity removeCachedAccount(PlayerDataEntity acc) {
         return this.removeCachedAccount(acc.getID());
     }
 
-    public PlayerData getByUsername(String username) {
-        PlayerData acc = this.repository.findOne(new FindFilter("username", username));
+    public PlayerDataEntity getByUsername(String username) {
+        PlayerDataEntity acc = this.repository.findOne(new FindFilter("username", username));
         return this.storeInCache(acc);
     }
 
-    public PlayerData getByUUID(String uuid) {
-        PlayerData acc = this.repository.findOne(new FindFilter("uuid", uuid));
+    public PlayerDataEntity getByUUID(String uuid) {
+        PlayerDataEntity acc = this.repository.findOne(new FindFilter("uuid", uuid));
         return this.storeInCache(acc);
     }
 
-    public PlayerData getByUUID(UUID uuid) {
+    public PlayerDataEntity getByUUID(UUID uuid) {
         return this.getByUUID(uuid.toString());
     }
     
-    public PlayerData getByPlayer(OfflinePlayer player) {
+    public PlayerDataEntity getByPlayer(OfflinePlayer player) {
         String uuid = player.getUniqueId().toString();
         String username = player.getName().toLowerCase();
         boolean requireFix = false;
 
-        PlayerData acc = this.getByUUID(uuid);
+        PlayerDataEntity acc = this.getByUUID(uuid);
 
         if (acc == null) {
             acc = this.getByUsername(username);

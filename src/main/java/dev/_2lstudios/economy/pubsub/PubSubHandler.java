@@ -1,6 +1,6 @@
 package dev._2lstudios.economy.pubsub;
 
-import dev._2lstudios.economy.account.PlayerData;
+import dev._2lstudios.economy.entities.PlayerDataEntity;
 import dev._2lstudios.economy.players.EconomyPlayer;
 import dev._2lstudios.economy.plugins.EconomyPlugin;
 import dev._2lstudios.economy.pubsub.packets.BalanceSyncPacket;
@@ -13,7 +13,7 @@ public class PubSubHandler {
     }
 
     public void handle(BalanceSyncPacket packet) {
-        PlayerData cachedAccount = this.plugin.getPlayerDataManager()
+        PlayerDataEntity cachedAccount = this.plugin.getPlayerDataManager()
             .getCachedAccount(packet.getAccountId());
 
         // Update balance if it is cached.

@@ -9,7 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.dotphin.milkshake.Milkshake;
 import com.dotphin.milkshake.Provider;
 
-import dev._2lstudios.economy.account.PlayerDataManager;
+import dev._2lstudios.economy.account.AccountManager;
 import dev._2lstudios.economy.api.EconomyAPI;
 import dev._2lstudios.economy.api.events.EconomyEvent;
 import dev._2lstudios.economy.commands.CommandListener;
@@ -35,7 +35,7 @@ public class EconomyPlugin extends JavaPlugin {
 
     private ConfigManager configManager;
     private LanguageManager languageManager;
-    private PlayerDataManager playerDataManager;
+    private AccountManager playerDataManager;
     private EconomyPlayerManager playerManager;
 
     private void addCommand(CommandListener command) {
@@ -70,7 +70,7 @@ public class EconomyPlugin extends JavaPlugin {
         String mongoCollection = this.getConfig().getString("storage.mongodb.collection");
 
         this.provider = Milkshake.connect(mongoURI);
-        this.playerDataManager = new PlayerDataManager(this.provider, mongoCollection);
+        this.playerDataManager = new AccountManager(this.provider, mongoCollection);
 
         // Connect to pubsub.
         PubSubHandler handler = new PubSubHandler(this);
@@ -125,7 +125,7 @@ public class EconomyPlugin extends JavaPlugin {
         return this.playerManager;
     }
 
-    public PlayerDataManager getPlayerDataManager() {
+    public AccountManager getPlayerDataManager() {
         return this.playerDataManager;
     }
 

@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import org.bukkit.OfflinePlayer;
 
-import dev._2lstudios.economy.account.PlayerDataManager;
-import dev._2lstudios.economy.entities.PlayerDataEntity;
+import dev._2lstudios.economy.account.AccountManager;
+import dev._2lstudios.economy.entities.AccountEntity;
 import dev._2lstudios.economy.errors.AccountNotFoundException;
 import dev._2lstudios.economy.errors.MaxBalanceLimitReachedException;
 import dev._2lstudios.economy.errors.MinBalanceLimitReachedException;
@@ -25,7 +25,7 @@ public class EconomyAPI {
     /* API */
     private EconomyPlugin plugin;
     private EconomyPlayerManager playerManager;
-    private PlayerDataManager playerDataManager;
+    private AccountManager playerDataManager;
     
     public EconomyAPI(EconomyPlugin plugin) {
         this.plugin = plugin;
@@ -48,17 +48,17 @@ public class EconomyAPI {
         return this.getPlayer(player.getName());
     }
 
-    public PlayerDataEntity getPlayerData(String playerName) {
+    public AccountEntity getPlayerData(String playerName) {
         EconomyPlayer ecoplayer = this.getPlayer(playerName);
         return ecoplayer != null ? ecoplayer.getData() : playerDataManager.getByUsername(playerName);
     }
 
-    public PlayerDataEntity getPlayerData(UUID uuid) {
+    public AccountEntity getPlayerData(UUID uuid) {
         EconomyPlayer ecoplayer = this.getPlayer(uuid);
         return ecoplayer != null ? ecoplayer.getData() : playerDataManager.getByUUID(uuid);
     }
 
-    public PlayerDataEntity getPlayerData(OfflinePlayer player) {
+    public AccountEntity getPlayerData(OfflinePlayer player) {
         EconomyPlayer ecoplayer = this.getPlayer(player);
         return ecoplayer != null ? ecoplayer.getData() : playerDataManager.getByPlayer(player);
     }
@@ -66,7 +66,7 @@ public class EconomyAPI {
     public boolean createPlayerAccount(OfflinePlayer player) {
         if (this.getPlayerData(player) == null) {
             EconomyPlayer ecoplayer = this.getPlayer(player);
-            PlayerDataEntity data = playerDataManager.createAccount(
+            AccountEntity data = playerDataManager.createAccount(
                 player,
                 this.plugin.getConfig().getDouble("economy.balance.initial")
             ); 
@@ -88,7 +88,7 @@ public class EconomyAPI {
     }
 
     // Economy operations
-    public double getBalance(PlayerDataEntity data) throws AccountNotFoundException {
+    public double getBalance(AccountEntity data) throws AccountNotFoundException {
         if (data != null) {
             return data.balance;
         } else {
@@ -108,7 +108,7 @@ public class EconomyAPI {
         return this.getBalance(this.getPlayerData(player));
     }
 
-    public double give(PlayerDataEntity account, double amount) throws MaxBalanceLimitReachedException, AccountNotFoundException {
+    public double give(AccountEntity account, double amount) throws MaxBalanceLimitReachedException, AccountNotFoundException {
         if (account != null) {
             double max = this.plugin.getConfig().getDouble("economy.balance.max");
             double oldBalance = account.balance;
@@ -143,7 +143,7 @@ public class EconomyAPI {
         return this.give(this.getPlayerData(username), amount);
     }
 
-    public double take(PlayerDataEntity account, double amount) throws MinBalanceLimitReachedException, AccountNotFoundException {
+    public double take(AccountEntity account, double amount) throws MinBalanceLimitReachedException, AccountNotFoundException {
         if (account != null) {
             double min = this.plugin.getConfig().getDouble("economy.balance.min");
             double oldBalance = account.balance;

@@ -2,7 +2,7 @@ package dev._2lstudios.economy.players;
 
 import org.bukkit.entity.Player;
 
-import dev._2lstudios.economy.account.PlayerDataManager;
+import dev._2lstudios.economy.account.AccountManager;
 import dev._2lstudios.economy.plugins.EconomyPlugin;
 
 public class OfflinePlayer extends EconomyPlayer {
@@ -25,7 +25,7 @@ public class OfflinePlayer extends EconomyPlayer {
 
     @Override
     public void download() {
-        PlayerDataManager dataManager = this.getPlugin().getPlayerDataManager();
+        AccountManager dataManager = this.getPlugin().getPlayerDataManager();
         this.setData(dataManager.getByUsername(this.getLowerName()));
     }
 }

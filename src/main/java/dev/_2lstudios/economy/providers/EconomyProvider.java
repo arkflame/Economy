@@ -19,7 +19,7 @@ public class EconomyProvider implements Economy {
     private Configuration config;
 
     public EconomyProvider(EconomyPlugin plugin) {
-        this.api = plugin.getAPI();
+        this.api = EconomyPlugin.getAPI();
         this.config = plugin.getConfig();
     }
 

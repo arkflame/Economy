@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.dotphin.milkshake.Milkshake;
 import com.dotphin.milkshake.Provider;
+import com.dotphin.milkshake.Repository;
 
 import dev._2lstudios.economy.account.AccountManager;
 import dev._2lstudios.economy.api.EconomyAPI;
@@ -18,6 +19,7 @@ import dev._2lstudios.economy.commands.player.BalanceCommand;
 import dev._2lstudios.economy.commands.player.PayCommand;
 import dev._2lstudios.economy.config.ConfigManager;
 import dev._2lstudios.economy.config.Configuration;
+import dev._2lstudios.economy.entities.AccountEntity;
 import dev._2lstudios.economy.i18n.LanguageManager;
 import dev._2lstudios.economy.listeners.PlayerJoinListener;
 import dev._2lstudios.economy.listeners.PlayerQuitListener;
@@ -28,7 +30,7 @@ import dev._2lstudios.economy.pubsub.PubSubHandler;
 import net.milkbowl.vault.economy.Economy;
 
 public class EconomyPlugin extends JavaPlugin {
-    private EconomyAPI api;
+    private static EconomyAPI api;
 
     private Provider provider;
     private PubSub pubsub;
@@ -54,7 +56,7 @@ public class EconomyPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         // Initialize API
-        this.api = new EconomyAPI(this);
+        api = new EconomyAPI(this);
 
         // Instantiate managers.
         this.configManager = new ConfigManager(this);
@@ -107,8 +109,8 @@ public class EconomyPlugin extends JavaPlugin {
     }
 
     // API getter
-    public EconomyAPI getAPI() {
-        return this.api;
+    public static EconomyAPI getAPI() {
+        return api;
     }
 
     // PubSub getter
@@ -133,5 +135,9 @@ public class EconomyPlugin extends JavaPlugin {
     public boolean hasPlugin(String pluginName) {
         Plugin plugin = this.getServer().getPluginManager().getPlugin(pluginName);
         return plugin != null && plugin.isEnabled();
+    }
+
+    public Repository<AccountEntity> getAccountRepository() {
+        return Milkshake.addRepository(AccountEntity.class, provider, "accounts");
     }
 }

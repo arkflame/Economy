@@ -17,7 +17,12 @@ public class AccountEntity extends Entity {
         this.balance = balance;
     }
 
+    public AccountEntity(String id, String username, String uuid, double balance) {
+        this(username, uuid, balance);
+        setID(id);
+    }
+
     public Account toAccount() {
-        return new Account(username, uuid, balance);
+        return new Account(getID(), username, uuid, balance);
     }
 }

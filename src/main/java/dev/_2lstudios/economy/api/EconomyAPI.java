@@ -177,4 +177,8 @@ public class EconomyAPI {
     public double take(String username, double amount) throws MinBalanceLimitReachedException, AccountNotFoundException {
         return this.take(this.getPlayerData(username), amount);
     }
+
+    public EconomyPlugin getPlugin() {
+        return plugin;
+    }
 }

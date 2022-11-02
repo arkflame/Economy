@@ -46,8 +46,16 @@ public class CommandExecutor {
         this.sender.sendMessage(this.formatMessage(message));
     }
 
-    public void sendI18nMessage(String key) {
-        this.sendMessage(this.getI18nMessage(key));
+    public void sendI18nMessage(String key, String[]... placeholders) {
+        String message = this.getI18nMessage(key);
+        
+        for (String[] placeholder : placeholders) {
+            if (placeholder.length > 1) {
+                message = message.replace(placeholder[0], placeholder[1]);
+            }
+        }
+
+        this.sendMessage(message);
     }
 
     public boolean isPlayer() {
